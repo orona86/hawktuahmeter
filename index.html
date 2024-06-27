@@ -49,7 +49,7 @@
 <body>
     <div class="container">
         <h1>HawkTuahMeter</h1>
-        <div class="field"><label>Total Views: </label><span id="estViews"></span></div>
+        <div class="field"><label>Total Views: </label><span id="estViews">23,000,023</span></div>
         <div class="field"><label>Unique views: </label><span id="uniqueViews"></span></div>
         <div class="field"><label>Watched by Women: </label><span id="watchedByWomen"></span></div>
         <div class="field"><label>Who never gave a hawk tuah before: </label><span id="neverGave"></span></div>
@@ -63,27 +63,33 @@
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        function getRandomEstViews() {
-            return Math.floor(Math.random() * (25000000 - 20000000 + 1)) + 20000000;
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-        function calculateHwakTuahs() {
-            const estViews = getRandomEstViews();
+        function updateViews() {
+            let estViews = parseInt(document.getElementById('estViews').innerText.replace(/,/g, ''), 10);
+            estViews += getRandomInt(20, 50);
+            document.getElementById('estViews').innerText = numberWithCommas(estViews);
+
             const uniqueViews = estViews * 0.64;
             const watchedByWomen = uniqueViews * 0.34;
             const neverGave = watchedByWomen * 0.98;
             const gaveItAGo = Math.round(neverGave * 0.023);
 
-            document.getElementById('estViews').innerText = numberWithCommas(estViews);
             document.getElementById('uniqueViews').innerText = numberWithCommas(uniqueViews.toFixed(0));
             document.getElementById('watchedByWomen').innerText = numberWithCommas(watchedByWomen.toFixed(0));
             document.getElementById('neverGave').innerText = numberWithCommas(neverGave.toFixed(0));
             document.getElementById('gaveItAGo').innerText = numberWithCommas(gaveItAGo);
             document.getElementById('result').innerText = `${numberWithCommas(gaveItAGo)} Hawk Tuahs were added to the world so far!`;
+
+            const updateInterval = getRandomInt(2000, 5000);
+            setTimeout(updateViews, updateInterval);
         }
 
-        // Call the function to perform the calculations and update the UI
-        calculateHwakTuahs();
+        document.addEventListener('DOMContentLoaded', (event) => {
+            updateViews();
+        });
     </script>
 </body>
 </html>
