@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HawkTuahMeter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+        }
+        h1 {
+            font-size: 5em;
+            margin-bottom: 20px;
+            color: #007BFF;
+            text-align: center;
+        }
+        .field {
+            margin: 20px 0;
+            font-size: 1.5em;
+        }
+        .field label {
+            font-weight: bold;
+        }
+        .result {
+            font-size: 2.5em;
+            margin-top: 20px;
+            color: #28a745;
+            text-align: center;
+        }
+        .footer {
+            font-size: 2.5em;
+            margin-top: 30px;
+            color: #FF0000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HawkTuahMeter</h1>
+        <div class="field"><label>Total Views: </label><span id="estViews"></span></div>
+        <div class="field"><label>Unique views: </label><span id="uniqueViews"></span></div>
+        <div class="field"><label>Watched by Women: </label><span id="watchedByWomen"></span></div>
+        <div class="field"><label>Who never gave a hawk tuah before: </label><span id="neverGave"></span></div>
+        <div class="field"><label>Who decided to give it a go: </label><span id="gaveItAGo"></span></div>
+        <div class="result" id="result"></div>
+        <div class="footer">We Love you! ❤️</div>
+    </div>
+
+    <script>
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function getRandomEstViews() {
+            return Math.floor(Math.random() * (25000000 - 20000000 + 1)) + 20000000;
+        }
+
+        function calculateHwakTuahs() {
+            const estViews = getRandomEstViews();
+            const uniqueViews = estViews * 0.64;
+            const watchedByWomen = uniqueViews * 0.34;
+            const neverGave = watchedByWomen * 0.98;
+            const gaveItAGo = Math.round(neverGave * 0.023);
+
+            document.getElementById('estViews').innerText = numberWithCommas(estViews);
+            document.getElementById('uniqueViews').innerText = numberWithCommas(uniqueViews.toFixed(0));
+            document.getElementById('watchedByWomen').innerText = numberWithCommas(watchedByWomen.toFixed(0));
+            document.getElementById('neverGave').innerText = numberWithCommas(neverGave.toFixed(0));
+            document.getElementById('gaveItAGo').innerText = numberWithCommas(gaveItAGo);
+            document.getElementById('result').innerText = `${numberWithCommas(gaveItAGo)} Hawk Tuahs were added to the world so far!`;
+        }
+
+        // Call the function to perform the calculations and update the UI
+        calculateHwakTuahs();
+    </script>
+</body>
+</html>
